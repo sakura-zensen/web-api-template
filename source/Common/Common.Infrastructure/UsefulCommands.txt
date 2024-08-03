@@ -1,0 +1,5 @@
+﻿Add-Migration "Initial Create" -Context AppDbContext -OutputDir ./Migrations/AppDb
+
+Update-Database -Context AppDbContext
+
+Remove-Migration -Context AppDbContext
