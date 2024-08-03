@@ -11,8 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{AEABF4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2F86807B-9DEB-4729-95DD-539F49D4F4BD}"
 	ProjectSection(SolutionItems) = preProject
-		..\eCommerceApi\LICENSE.txt = ..\eCommerceApi\LICENSE.txt
-		..\eCommerceApi\README.md = ..\eCommerceApi\README.md
+		README.md = README.md
+		LICENSE.txt = LICENSE.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Authorization", "source\Common\Common.Authorization\Common.Authorization.csproj", "{6514E624-A067-4360-BBD6-5DAAF34E3243}"
@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Infrastructure", "so
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Services", "source\Common\Common.Services\Common.Services.csproj", "{31740E03-E5A5-4AD4-9B07-84A4387EFA81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientApi.Template", "source\ClientApi\ClientApi.Template\ClientApi.Template.csproj", "{EA44B6CD-4E72-4B91-99BB-D18B4D3F28E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientApi.Template", "source\ClientApi\ClientApi.Template\ClientApi.Template.csproj", "{EA44B6CD-4E72-4B91-99BB-D18B4D3F28E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
