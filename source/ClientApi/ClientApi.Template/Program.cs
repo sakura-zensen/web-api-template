@@ -7,14 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.RegisterServiceDependencies(builder.Configuration);
-builder.Services.AddJwtAuthentication(builder.Configuration);
-builder.Services.AddAllOriginCors();
-
-// Serves from Identity Core.
-builder.Services.AddIdentityApiEndpoints<AppUser>().AddEntityFrameworkStores<AppDbContext>();
-builder.Services.AddAppDbContext(builder.Configuration);
+builder.Services.AddSwaggerGen()
+                .RegisterServiceDependencies(builder.Configuration)
+                .AddJwtAuthentication(builder.Configuration)
+                .AddAllOriginCors()
+                .AddAppDbContext(builder.Configuration)
+                .AddIdentityApiEndpoints<AppUser>().AddEntityFrameworkStores<AppDbContext>();
 
 var app = builder.Build();
 

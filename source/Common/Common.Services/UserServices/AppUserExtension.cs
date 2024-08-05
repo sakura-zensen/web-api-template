@@ -8,7 +8,7 @@ namespace Common.Services.UserServices
 {
     public static partial class AppUserExtension
     {
-        public static void AddAppUserApis(this IEndpointRouteBuilder app)
+        public static IEndpointRouteBuilder AddAppUserApis(this IEndpointRouteBuilder app)
         {
             app.MapPost("/api/signup", async (
                 IAppUserManager userManager,
@@ -23,6 +23,8 @@ namespace Common.Services.UserServices
                 ) => await userManager.UpsertAsync(requestDto))
              .WithTags("App User")
             .RequireAuthorization();
+            
+            return app;
         }
     }
 }

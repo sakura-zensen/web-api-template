@@ -22,10 +22,12 @@ namespace Common.Services
             return services;
         }
 
-        public static void AddIdentityApis(this IEndpointRouteBuilder app)
+        public static IEndpointRouteBuilder AddIdentityApis(this IEndpointRouteBuilder app)
         {
             app.MapGroup("/api").MapIdentityApi<AppUser>().WithTags("Identity Apis").RequireAuthorization();
             app.AddAppUserApis();
+
+            return app;
         }
     }
 }
