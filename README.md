@@ -15,6 +15,6 @@
 
 ### Prerequisites
 
-- .NET Core 8 or later
+- .NET Core 9 or later
 - SQL Server 2019 or later
 
