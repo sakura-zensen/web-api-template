@@ -1,7 +1,6 @@
-﻿namespace Common.Services.RequestDtos
+﻿namespace Common.Services.RequestDtos;
+
+public record BaseDto
 {
-    public record BaseDto
-    {
-        public bool Sys_Deactivated { get; set; }
-    }
+    public bool Sys_Deactivated { get; set; }
 }

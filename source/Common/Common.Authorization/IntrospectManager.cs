@@ -1,25 +1,24 @@
-﻿namespace Common.Authorization
+﻿namespace Common.Authorization;
+
+public partial class IntrospectManager : IIntrospectManager
 {
-    public partial class IntrospectManager : IIntrospectManager
+    public object ValidateJwtToken(string token)
     {
-        public object ValidateJwtToken(string token)
+        try
         {
-            try
+            ValidateTokenAsync(token);
+            return new
             {
-                ValidateTokenAsync(token);
-                return new
-                {
-                    isValidUser = true
-                };
-            }
-            catch (Exception ex)
+                isValidUser = true
+            };
+        }
+        catch (Exception ex)
+        {
+            return new
             {
-                return new
-                {
-                    isValidUser = false,
-                    ex.Message
-                };
-            }
+                isValidUser = false,
+                ex.Message
+            };
         }
     }
 }

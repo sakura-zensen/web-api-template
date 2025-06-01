@@ -8,26 +8,25 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace Common.Services
+namespace Common.Services;
+
+public static class StartupExtensions
 {
-    public static class StartupExtensions
+    public static IServiceCollection RegisterServiceDependencies(this IServiceCollection services, IConfiguration configuration)
     {
-        public static IServiceCollection RegisterServiceDependencies(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.Configure<ApplicationSettingsModel>(configuration.GetSection(ApplicationSettingsModel.ApplicationSettings));
+        services.Configure<ApplicationSettingsModel>(configuration.GetSection(ApplicationSettingsModel.ApplicationSettings));
 
-            services.AddScoped<IIntrospectManager, IntrospectManager>();
-            services.AddScoped<IAppUserManager, AppUserManager>();
+        services.AddScoped<IIntrospectManager, IntrospectManager>();
+        services.AddScoped<IAppUserManager, AppUserManager>();
 
-            return services;
-        }
+        return services;
+    }
 
-        public static IEndpointRouteBuilder AddIdentityApis(this IEndpointRouteBuilder app)
-        {
-            app.MapGroup("/api").MapIdentityApi<AppUser>().WithTags("Identity Apis").RequireAuthorization();
-            app.AddAppUserApis();
+    public static IEndpointRouteBuilder AddIdentityApis(this IEndpointRouteBuilder app)
+    {
+        app.MapGroup("/api").MapIdentityApi<AppUser>().WithTags("Identity Apis").RequireAuthorization();
+        app.AddAppUserApis();
 
-            return app;
-        }
+        return app;
     }
 }

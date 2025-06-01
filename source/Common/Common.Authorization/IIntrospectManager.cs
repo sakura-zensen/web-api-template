@@ -1,7 +1,6 @@
-﻿namespace Common.Authorization
+﻿namespace Common.Authorization;
+
+public interface IIntrospectManager
 {
-    public interface IIntrospectManager
-    {
-        object ValidateJwtToken(string token);
-    }
+    object ValidateJwtToken(string token);
 }

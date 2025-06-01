@@ -1,24 +1,23 @@
 ﻿using Common.Services.RequestDtos;
 using Microsoft.AspNetCore.Identity;
 
-namespace Common.Services.UserServices
+namespace Common.Services.UserServices;
+
+public partial class AppUserManager(UserManager<AppUser> userManager) : IAppUserManager
 {
-    public partial class AppUserManager(UserManager<AppUser> userManager) : IAppUserManager
+    public async Task<ResponseDto<IdentityResult>> UpsertAsync(AppUserRequestDto userDto)
     {
-        public async Task<ResponseDto<IdentityResult>> UpsertAsync(AppUserRequestDto userDto)
+        return new()
         {
-            return new()
+            Succeeded = true,
+            Data = await userManager.CreateAsync(new()
             {
-                Succeeded = true,
-                Data = await userManager.CreateAsync(new()
-                {
-                    Email = userDto.Email,
-                    UserName = userDto.UserName,
-                    FirstName = userDto.FirstName,
-                    LastName = userDto.LastName,
-                    PhoneNumber = userDto.PhoneNumber,
-                }, userDto.Password)
-            };
-        }
+                Email = userDto.Email,
+                UserName = userDto.UserName,
+                FirstName = userDto.FirstName,
+                LastName = userDto.LastName,
+                PhoneNumber = userDto.PhoneNumber,
+            }, userDto.Password)
+        };
     }
 }

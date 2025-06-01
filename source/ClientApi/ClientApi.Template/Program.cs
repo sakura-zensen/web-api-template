@@ -27,5 +27,12 @@ app.UseCors("AllowAllOrigin");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+/*
+     Add custom identity user roles by default
+     This is a one-time setup, you can remove this line after the roles are created or really necessary, 
+     or you can keep it to ensure roles are always available in the database.
+     or you may use role endpoints to manage roles dynamically.
+*/
+// await app.AddCustomIdentityUserRoles();
 app.AddIdentityApis();
 app.Run();
