@@ -34,7 +34,7 @@ public partial class DbAccessProvider
         }
         catch (Exception ex)
         {
-            return new() { Succeeded = false, ResponseMessage = ex.Message };
+            return new() { ResponseMessage = ex.Message };
         }
     }
     private static async Task<string> GetResultsInJsonStringAsync(SqlCommand command)
