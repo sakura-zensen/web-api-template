@@ -6,10 +6,11 @@ public static partial class GraphQLRegister
 {
     public static void RegisterGraphQLServerSchemaAndResolvers(this IServiceCollection services)
     {
-        var graphqlServer = services
-                                    .AddGraphQLServer()
-                                    .AddQueryType<QueryResolver>();
+        var graphqlServer = services.AddGraphQLServer()
+                                    .AddDocumentFromString(ClientGraphQLSchema.GetSchema());
 
-        //graphqlServer.RegisterBookResolver();
+        services.AddSingleton<BookRepository>();
+
+        graphqlServer.RegisterBookResolver();
     }
 }
