@@ -6,10 +6,10 @@ public static partial class BookResolver
 {
     public static IRequestExecutorBuilder RegisterBookResolver(this IRequestExecutorBuilder builder) =>
         builder
-.AddResolver("Query", "books", (BookQueryResolvers q) => q.GetBooks(default!).ToList())
-        
-                .AddResolver("Query", "book", (BookQueryResolvers q, string title) => q.GetBook(title, default!))
-                .AddResolver("Query", "authors", (BookQueryResolvers q) => q.GetAuthors(default!))
+                .AddResolver("Query", "books", (BookQueryResolvers q, [Service] BookRepository repo) => q.GetBooks(repo))
+                .AddResolver("Query", "book", (BookQueryResolvers q, string title, [Service] BookRepository repo) => q.GetBook(title, repo))
+                .AddResolver("Query", "authors", (BookQueryResolvers q, [Service] BookRepository repo) => q.GetAuthors(repo))
+                
                 // Book fields
                 .AddResolver("Book", "title", (Book b) => b.Title)
                 .AddResolver("Book", "author", (Book b) => b.Author)
@@ -21,8 +21,8 @@ public static partial class BookResolver
 
 public class BookQueryResolvers
 {
-    public IQueryable<Book> GetBooks([Service] BookRepository repository)
-        => repository.GetBooks();
+    public List<Book> GetBooks([Service] BookRepository repository)
+        => [.. repository.GetBooks()];
 
     public Book? GetBook(string title, [Service] BookRepository repository)
         => repository.GetBook(title);
